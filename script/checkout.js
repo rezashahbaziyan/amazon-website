@@ -1,4 +1,4 @@
-import { cart } from "../data/cart.js";
+import { cart , removefromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 let cartSummeryHTML = '';
@@ -38,7 +38,7 @@ cart.forEach((cartItem) => {
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary" data-product-id = "${matchingProduct.id}">
                     Delete
                   </span>
                 </div>
@@ -95,3 +95,13 @@ cart.forEach((cartItem) => {
     
 });
     document.querySelector('.js-order-summery').innerHTML = cartSummeryHTML;
+    
+    document.querySelectorAll('.delete-quantity-link').forEach((Link)=>{
+      Link.addEventListener('click' , ()=>{
+        const productId = Link.dataset.productId;
+        removefromCart(productId);
+        console.log(cart);
+        
+        
+      })
+    })
