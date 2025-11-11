@@ -23,3 +23,24 @@
    }
  }
    
+ 
+ export function updateCartQuantity() {
+   let cartQuantity = 0;
+ 
+   cart.forEach((cartItem) => {
+     cartQuantity += cartItem.quantity;
+   });
+ 
+   document.querySelector('.cart-quantity').innerHTML = cartQuantity;
+ }
+
+ export function removefromCart(productId) {
+  const newCart=[];
+  cart.forEach((cartItem) => {
+    if (cartItem.productId !== productId) {
+      newCart.push(cartItem);
+    }
+  });
+  cart = newCart;
+ }
+ 
